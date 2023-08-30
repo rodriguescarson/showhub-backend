@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import jwt from 'jsonwebtoken';
+import axios from 'axios';
 
 const app = express();
 app.use(bodyParser.json());
@@ -23,4 +24,29 @@ app.post('/api/login', (req, res) => {
   } else {
     res.status(401).json({ message: 'Authentication failed' });
   }
+});
+
+app.get('/api/search', async (req, res) => {
+  const query = req.query.query as string;
+  const token = req.headers.authorization?.replace('Bearer ', '');
+
+  if (!token) {
+    res.status(401).json({ message: 'Authorization token missing' });
+    return;
+  }
+
+  try {
+    const decodedToken = jwt.verify(token, secretKey);
+    const response = await axios.get(`https://api.tvmaze.com/search/shows?q=${query}`);
+    const shows = response.data;
+
+    res.status(200).json(shows);
+  } catch (error) {
+    res.status(401).json({ message: 'Invalid token' });
+  }
+});
+
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
