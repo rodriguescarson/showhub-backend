@@ -1,7 +1,7 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import jwt from 'jsonwebtoken';
-import axios from 'axios';
+const express = require('express');
+const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
+const axios = require('axios');
 
 const app = express();
 app.use(bodyParser.json());
