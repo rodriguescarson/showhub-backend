@@ -13,9 +13,9 @@ interface UserCredentials {
 }
 
 const staticCredentials: UserCredentials[] = [
-  { email: 'user1@example.com', password: 'pass123' },
-  { email: 'user2@example.com', password: 'pass456' },
-  { email: 'user3@example.com', password: 'pass789' }
+  { email: 'user1@example.com', password: 'pass12345' },
+  { email: 'user2@example.com', password: 'pass45645' },
+  { email: 'user3@example.com', password: 'pass78945' }
 ];
 const secretKey: string = 'your-secret-key';
 app.get('/', (req: Request, res: Response) => {
