@@ -2,7 +2,7 @@ import express, { Express, Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import jwt from 'jsonwebtoken';
 import axios from 'axios';
-const cors = require("cors");
+import cors from "cors";
 const app: Express = express();
 app.use(cors());
 app.use(bodyParser.json());
