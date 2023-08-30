@@ -1,20 +1,27 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const jwt = require('jsonwebtoken');
-const axios = require('axios');
+import express, { Express, Request, Response } from 'express';
+import bodyParser from 'body-parser';
+import jwt from 'jsonwebtoken';
+import axios from 'axios';
 
-const app = express();
+const app: Express = express();
 app.use(bodyParser.json());
 
-const staticCredentials = [
+interface UserCredentials {
+  email: string;
+  password: string;
+}
+
+const staticCredentials: UserCredentials[] = [
   { email: 'user1@example.com', password: 'pass123' },
   { email: 'user2@example.com', password: 'pass456' },
   { email: 'user3@example.com', password: 'pass789' }
 ];
-const secretKey = 'your-secret-key';
-
-app.post('/api/login', (req, res) => {
-  const { email, password } = req.body;
+const secretKey: string = 'your-secret-key';
+app.get('/', (req: Request, res: Response) => {
+  res.send('Test');
+});
+app.post('/api/login', (req: Request, res: Response) => {
+  const { email, password } = req.body as UserCredentials;
 
   const user = staticCredentials.find(cred => cred.email === email && cred.password === password);
 
@@ -26,7 +33,7 @@ app.post('/api/login', (req, res) => {
   }
 });
 
-app.get('/api/search', async (req, res) => {
+app.get('/api/search', async (req: Request, res: Response) => {
   const query = req.query.query as string;
   const token = req.headers.authorization?.replace('Bearer ', '');
 
@@ -36,7 +43,7 @@ app.get('/api/search', async (req, res) => {
   }
 
   try {
-    const decodedToken = jwt.verify(token, secretKey);
+    const decodedToken = jwt.verify(token, secretKey) as { email: string };
     const response = await axios.get(`https://api.tvmaze.com/search/shows?q=${query}`);
     const shows = response.data;
 
