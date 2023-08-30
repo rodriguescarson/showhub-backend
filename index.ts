@@ -4,9 +4,8 @@ import jwt from 'jsonwebtoken';
 import axios from 'axios';
 import cors from "cors";
 const app: Express = express();
-app.use(cors());
 app.use(bodyParser.json());
-
+app.use(cors());
 interface UserCredentials {
   email: string;
   password: string;

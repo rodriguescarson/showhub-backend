@@ -18,8 +18,8 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const axios_1 = __importDefault(require("axios"));
 const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
-app.use((0, cors_1.default)());
 app.use(body_parser_1.default.json());
+app.use((0, cors_1.default)());
 const staticCredentials = [
     { email: 'user1@example.com', password: 'pass12345' },
     { email: 'user2@example.com', password: 'pass45645' },
