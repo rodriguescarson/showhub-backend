@@ -16,12 +16,14 @@ const express_1 = __importDefault(require("express"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const axios_1 = __importDefault(require("axios"));
+const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
+app.use((0, cors_1.default)());
 app.use(body_parser_1.default.json());
 const staticCredentials = [
-    { email: 'user1@example.com', password: 'pass123' },
-    { email: 'user2@example.com', password: 'pass456' },
-    { email: 'user3@example.com', password: 'pass789' }
+    { email: 'user1@example.com', password: 'pass12345' },
+    { email: 'user2@example.com', password: 'pass45645' },
+    { email: 'user3@example.com', password: 'pass78945' }
 ];
 const secretKey = 'your-secret-key';
 app.get('/', (req, res) => {
