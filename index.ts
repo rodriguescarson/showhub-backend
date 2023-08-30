@@ -36,7 +36,7 @@ app.post('/api/login', (req: Request, res: Response) => {
 app.get('/api/search', async (req: Request, res: Response) => {
   const query = req.query.query as string;
   const token = req.headers.authorization?.replace('Bearer ', '');
-
+  console.log(token)
   if (!token) {
     res.status(401).json({ message: 'Authorization token missing' });
     return;

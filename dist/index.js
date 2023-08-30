@@ -44,6 +44,7 @@ app.get('/api/search', (req, res) => __awaiter(void 0, void 0, void 0, function*
     var _a;
     const query = req.query.query;
     const token = (_a = req.headers.authorization) === null || _a === void 0 ? void 0 : _a.replace('Bearer ', '');
+    console.log(token);
     if (!token) {
         res.status(401).json({ message: 'Authorization token missing' });
         return;
