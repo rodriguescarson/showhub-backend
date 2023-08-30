@@ -4,12 +4,7 @@ import jwt from 'jsonwebtoken';
 import axios from 'axios';
 const cors = require("cors");
 const app: Express = express();
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    optionsSuccessStatus: 200,
-  })
-);
+app.use(cors());
 app.use(bodyParser.json());
 
 interface UserCredentials {
